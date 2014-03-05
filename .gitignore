@@ -16,3 +16,9 @@ tmp
 .yardoc
 _yardoc
 doc/
+
+# Java artifacts
+target/
+.settings/
+.classpath
+.project
