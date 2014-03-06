@@ -1,4 +1,6 @@
 ---
+env:
+  DEPLOYMENT_ARTIFACT: "target/java2r-0.0.1-SNAPSHOT-jar-with-dependencies.jar"
 applications:
 - name: java2r
   host: none
