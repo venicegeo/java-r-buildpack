@@ -12,5 +12,3 @@ export LDFLAGS="-L/app/vendor/gcc/lib64 -L/app/vendor/gsl/lib"
 export CPPFLAGS="-I/app/vendor/glibc/string -I/app/vendor/glibc/time -I/app/vendor/gsl/include"
 export PKG_LDFLAGS=$LDFLAGS
 export PKG_CPPFLAGS=$CPPFLAGS
-
-R -e 'library(Rserve)' -e 'Rserve(args="--vanilla")'

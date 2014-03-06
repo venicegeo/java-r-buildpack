@@ -1,6 +1,6 @@
 # Cloud Foundry R Buildpack
 
-A '[R](http://www.r-project.org/)' buildpack for [CloudFoundry](http://cloudfoundry.org/) that includes [Rserve](https://rforge.net/Rserve/) for supporting remote callers using the rserve client libraries available in those languages.
+A '[R](http://www.r-project.org/)' buildpack for [CloudFoundry](http://cloudfoundry.org/) that includes [Rserve](https://rforge.net/Rserve/) for supporting remote callers using an Rserve client library available in many languages.
 
 ## Example Java Usage
 ```bash
