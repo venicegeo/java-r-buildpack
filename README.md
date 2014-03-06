@@ -1,6 +1,6 @@
 # Cloud Foundry R Buildpack
 
-A '[R](http://www.r-project.org/)' buildpack for CloudFoundry that includes [Rserve](https://rforge.net/Rserve/) for supporting remote callers using the rserve client libraries available in those languages.
+A '[R](http://www.r-project.org/)' buildpack for [CloudFoundry](http://cloudfoundry.org/) that includes [Rserve](https://rforge.net/Rserve/) for supporting remote callers using the rserve client libraries available in those languages.
 
 ## Example Java Usage
 ```bash
@@ -10,7 +10,7 @@ $ cf push --no-route
 ```
 
 ## Caveats
-Installing on CloudFoundry with [bosh-lite](https://github.com/cloudfoundry/bosh-lite) you may get an error when R installs: 
+When pushing an app using the buildpack to CF using [bosh-lite](https://github.com/cloudfoundry/bosh-lite) you may get an error when R installs: 
 ```
 libreadline.so.5: cannot open shared object file: No such file or directory
 ```
