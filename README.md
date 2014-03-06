@@ -9,7 +9,7 @@ $ mvn install
 $ cf push --no-route
 ```
 
-## Caveates
+## Caveats
 Installing on CloudFoundry with [bosh-lite](https://github.com/cloudfoundry/bosh-lite) you may get an error when R installs: 
 ```
 libreadline.so.5: cannot open shared object file: No such file or directory
