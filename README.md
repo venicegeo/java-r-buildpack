@@ -1,6 +1,6 @@
 # Cloud Foundry R Buildpack
 
-A '[R](http://www.r-project.org/)' buildpack for [CloudFoundry](http://cloudfoundry.org/) that includes [Rserve](https://rforge.net/Rserve/) for supporting remote callers using an Rserve client library available in many languages.
+A '[R](http://www.r-project.org/)' buildpack for [CloudFoundry](http://cloudfoundry.org/) that includes [Rserve](https://rforge.net/Rserve/) for supporting remote callers using an Rserve client library available in many languages. This is a fork of the [heroku-buildpack-r](https://github.com/virtualstaticvoid/heroku-buildpack-r) with modifications made mainly to the [compile](https://github.com/pivotalservices/java-r-buildpack/blob/master/bin/compile) script to enable an easier path for integration with the CloudFoundry [java-buildpack](https://github.com/cloudfoundry/java-buildpack) when using the [heroku-buildpack-multi](https://github.com/ddollar/heroku-buildpack-multi).
 
 ## Example Java Usage
 ```bash
