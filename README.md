@@ -9,13 +9,20 @@ $ mvn install
 $ cf push --no-route
 ```
 
+## Example Ruby Usage
+```bash
+$ cd ~/workspace/java-r-buildpack/test/ruby
+$ cf push
+$ open http://rrubyapp.10.244.0.34.xip.io
+```
+
 ## Caveats
-When pushing an app using the buildpack to CF using [bosh-lite](https://github.com/cloudfoundry/bosh-lite) you may get an error when R installs: 
+R may fail to install when pushing an app to CF using a [bosh-lite](https://github.com/cloudfoundry/bosh-lite) warden stemcell due to the following error:
 ```
 libreadline.so.5: cannot open shared object file: No such file or directory
 ```
 
-This happens because the R binary relies on an older version of libreadline shared library than the one that comes installed on the warden stemcell.
+This happens because the R binary relies on an older version of libreadline shared library than the one that comes installed on the stemcell.
 Rather than installing the older version onto the root partition, to get around this I created a symbolic link that maps the one R is looking for to the one on the stemcell:
 
 ```bash

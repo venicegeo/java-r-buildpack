@@ -1,2 +1,2 @@
-https://github.com/malston/heroku-buildpack-r.git#cf-159
+https://github.com/pivotalservices/java-r-buildpack.git
 https://github.com/heroku/heroku-buildpack-ruby.git
