@@ -6,4 +6,4 @@ applications:
   memory: 512M
   instances: 1
   path:  target/java2r-0.0.1-SNAPSHOT-jar-with-dependencies.jar
-  buildpack: https://github.com/malston/java-buildpack.git
+  buildpack: https://github.com/malston/java-buildpack.git#java_main
