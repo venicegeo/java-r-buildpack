@@ -31,9 +31,8 @@ CACHE_DIR="$2/vendor"
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 BUILDPACK_DIR="$(dirname $(dirname $0))"
 echo "Build dir: $BUILD_DIR" | indent
-echo "Cache dir: $CACHE_DIR" | indent
-echo "lp dir: $LP_DIR" | indent
 echo "Buildpack dir: $BUILDPACK_DIR" | indent
+echo "s3 bucket: $S3_BUCKET" | indent
 
 # config
 R_VERSION="3.0.2"
