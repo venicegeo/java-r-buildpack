@@ -165,7 +165,9 @@ echo "Executing init.r script" | indent
   r <- getOption("repos");
   r["CRAN"] <- "$CRAN_MIRROR";
   options(repos=r);
-  `CMD javareconf`
+RPROG
+/app/vendor/R/bin/R CMD javareconf
+/app/vendor/R/bin/R -s <<RPROG > indent
   `cat $BUILD_DIR/init.r`
 RPROG
 
