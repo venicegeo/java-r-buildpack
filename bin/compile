@@ -39,7 +39,7 @@ CACHE_DIR="$2/vendor"
 COMPILE_BUILDPACK_DIR=$(cd $(dirname $0) && cd .. && pwd)
 BUILDPACK_DIR="$(dirname $(dirname $0))"
 echo "BUILD_DIR: $BUILD_DIR" | indent
-echo "COMPILE_BUILDPACK_DIR: COMPILE_BUILDPACK_DIR" | indent
+echo "COMPILE_BUILDPACK_DIR: $COMPILE_BUILDPACK_DIR" | indent
 echo "BUILDPACK_DIR: $BUILDPACK_DIR" | indent
 
 # config
@@ -73,7 +73,7 @@ VENDORED_JDK="${BUILD_DIR}/vendor/jdk"
 echo "Downloading and unpacking openjdk-$JDK_VERSION into '$VENDORED_JDK'" | indent
 package_download "${JDK_URL}" "${VENDORED_JDK}"
 
-JAVA_HOME=${VENDORED_JDK}
+JAVA_HOME=$VENDORED_JDK
 echo "JAVA_HOME: $JAVA_HOME" | indent
 JAVA_CPPFLAGS="-I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux"
 echo "JAVA_CPPFLAGS: $JAVA_CPPFLAGS" | indent
