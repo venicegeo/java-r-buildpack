@@ -22,17 +22,25 @@ function indent() {
   esac
 }
 
+function package_download() {
+  url="$1"
+  location="$2"
+
+  mkdir -p $location
+  curl $url --location -s -o - | tar xzf - -C $location
+}
+
 # clean up leaking environment
 unset GIT_DIR
 
 # parse and derive params
 BUILD_DIR=$1
 CACHE_DIR="$2/vendor"
-LP_DIR=`cd $(dirname $0); cd ..; pwd`
+COMPILE_BUILDPACK_DIR=$(cd $(dirname $0) && cd .. && pwd)
 BUILDPACK_DIR="$(dirname $(dirname $0))"
-echo "Build dir: $BUILD_DIR" | indent
-echo "Buildpack dir: $BUILDPACK_DIR" | indent
-echo "s3 bucket: $S3_BUCKET" | indent
+echo "BUILD_DIR: $BUILD_DIR" | indent
+echo "COMPILE_BUILDPACK_DIR: COMPILE_BUILDPACK_DIR" | indent
+echo "BUILDPACK_DIR: $BUILDPACK_DIR" | indent
 
 # config
 R_VERSION="3.0.2"
@@ -40,20 +48,42 @@ BUILD_PACK_VERSION="20140218-0019"
 
 S3_BUCKET="heroku-buildpack-r"
 R_BINARIES="http://${S3_BUCKET}.s3.amazonaws.com/R-${R_VERSION}-binaries-${BUILD_PACK_VERSION}.tar.gz"
+echo "R_BINARIES: $R_BINARIES" | indent
 
 VENDOR_DIR="$BUILD_DIR/vendor"
 R_BASE="$VENDOR_DIR/R"
 CRAN_MIRROR="http://cran.revolutionanalytics.com"
 
+REPOSITORY_ROOT="download.pivotal.io.s3.amazonaws.com"
+JDK_VERSION="1.7.0_51"
+PLATFORM="lucid"
+ARCH="x86_64"
+JDK_URL="http://${REPOSITORY_ROOT}/openjdk/${PLATFORM}/${ARCH}/openjdk-${JDK_VERSION}.tar.gz"
+JAVA_CPPFLAGS="-I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux"
+echo "JDK_URL: $JDK_URL" | indent
+echo "JAVA_CPPFLAGS: $JAVA_CPPFLAGS" | indent
+#: ${JAVA_HOME=}
+#: ${JAVA_CPPFLAGS=~autodetect~}
+#: ${JAVA_LD_LIBRARY_PATH=~autodetect~}
+#: ${JAVA_LIBS=~autodetect~}
+
 mkdir -p $CACHE_DIR
-echo "Created dir: $CACHE_DIR" | indent
+echo "CACHE_DIR: $CACHE_DIR" | indent
+
+VENDORED_JDK="${BUILD_DIR}/vendor/jdk"
+
+echo "Downloading and unpacking openjdk-$JDK_VERSION into '$VENDORED_JDK'" | indent
+package_download "${JDK_URL}" "${VENDORED_JDK}"
+
+JAVA_HOME=${VENDORED_JDK}
+echo "JAVA_HOME: $JAVA_HOME" | indent
 
 # vendor R into the slug
 echo "Vendoring R $R_VERSION" | indent
 
 # download and unpack binaries
 echo "Downloading and unpacking R binaries into '$VENDOR_DIR'" | indent
-mkdir -p $VENDOR_DIR && curl $R_BINARIES -s -o - | tar xzf - -C $VENDOR_DIR
+package_download "${R_BINARIES}" "${VENDOR_DIR}"
 
 # need to copy the binaries to /app/vendor so that R works
 mkdir -p /app/vendor/gcc

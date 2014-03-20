@@ -11,15 +11,9 @@ public class Forecast {
 	RConnection connection = null;
 	REngine engine = null;
 
-	public static void main(String[] args) {
-		new Forecast();
-	}
-
 	public Forecast() {
 		openRserveConn();
-
 		runForcast();
-
 		closeRserveConn();
 	}
 
