@@ -42,6 +42,9 @@ echo "BUILD_DIR: $BUILD_DIR" | indent
 echo "COMPILE_BUILDPACK_DIR: $COMPILE_BUILDPACK_DIR" | indent
 echo "BUILDPACK_DIR: $BUILDPACK_DIR" | indent
 
+mkdir -p $CACHE_DIR
+echo "Created CACHE_DIR: $CACHE_DIR" | indent
+
 # config
 R_VERSION="3.0.2"
 BUILD_PACK_VERSION="20140218-0019"
@@ -65,18 +68,20 @@ echo "JDK_URL: $JDK_URL" | indent
 #: ${JAVA_LD_LIBRARY_PATH=~autodetect~}
 #: ${JAVA_LIBS=~autodetect~}
 
-mkdir -p $CACHE_DIR
-echo "CACHE_DIR: $CACHE_DIR" | indent
-
 VENDORED_JDK="${BUILD_DIR}/vendor/jdk"
 
 echo "Downloading and unpacking openjdk-$JDK_VERSION into '$VENDORED_JDK'" | indent
 package_download "${JDK_URL}" "${VENDORED_JDK}"
 
-JAVA_HOME=$VENDORED_JDK
+JAVA_HOME="${VENDORED_JDK}/openjdk-1.7.0_51"
 echo "JAVA_HOME: $JAVA_HOME" | indent
 JAVA_CPPFLAGS="-I$JAVA_HOME/include -I$JAVA_HOME/include/linux"
 echo "JAVA_CPPFLAGS: $JAVA_CPPFLAGS" | indent
+if [ -f "/usr/bin/java" ]; then
+    echo "Java found on path" | indent
+else
+    ln -s $JAVA_HOME/bin/java /usr/bin/
+fi
 
 # vendor R into the slug
 echo "Vendoring R $R_VERSION" | indent
