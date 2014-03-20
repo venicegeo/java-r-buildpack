@@ -152,7 +152,7 @@ mkdir -p /app/vendor/R/lib64/R/doc/html
 touch /app/vendor/R/lib64/R/doc/html/R.css
 
 # prep the rJava env
-./rjava_config.sh
+$BUILD_DIR/bin/rjava_config.sh
 
 # install dependencies from CRAN
 echo "Executing init.r script" | indent
