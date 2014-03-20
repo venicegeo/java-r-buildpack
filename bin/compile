@@ -70,7 +70,7 @@ JAVA_HOME_TEMP="${VENDOR_DIR}/${JDK}"
 #: ${JAVA_LD_LIBRARY_PATH=~autodetect~}
 #: ${JAVA_LIBS=~autodetect~}
 
-echo "Downloading and unpacking openjdk-$JDK_VERSION into 'JAVA_HOME_TEMP'" | indent
+echo "Downloading and unpacking openjdk-$JDK_VERSION into '$JAVA_HOME_TEMP'" | indent
 package_download "${JDK_URL}" "${JAVA_HOME_TEMP}"
 
 if [ -d "$JAVA_HOME_TEMP" ]; then
@@ -117,7 +117,7 @@ echo "Copying lib64 files into /app/vendor/R/lib64/R/lib" | indent
 cp /app/vendor/gcc/lib64/* /app/vendor/R/lib64/R/lib
 
 # R needs to know where gfortran and glibc header files are
-export PATH="/app/vendor/R/bin:/app/vendor/gcc/bin:$PATH"
+export PATH="$JAVA_HOME/bin:/app/vendor/R/bin:/app/vendor/gcc/bin:$PATH"
 echo "PATH set to '$PATH'" | indent
 
 export LDFLAGS="-L/app/vendor/gcc/lib64 -L/app/vendor/gsl/lib"
