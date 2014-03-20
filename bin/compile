@@ -62,7 +62,8 @@ JDK_VERSION="1.7.0_51"
 JDK="openjdk-${JDK_VERSION}"
 PLATFORM="lucid"
 ARCH="x86_64"
-JDK_URL="http://${REPOSITORY_ROOT}/openjdk/${PLATFORM}/${ARCH}/${JDK}.tar.gz"
+#JDK_URL="http://${REPOSITORY_ROOT}/openjdk/${PLATFORM}/${ARCH}/${JDK}.tar.gz"
+JDK_URL="http://download.oracle.com/otn-pub/java/jdk/7u51-b13/jdk-7u51-linux-x64.tar.gz"
 echo "JDK_URL: $JDK_URL" | indent
 JAVA_HOME_TEMP="${VENDOR_DIR}/${JDK}"
 #: ${JAVA_HOME=}
