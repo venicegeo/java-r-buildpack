@@ -72,7 +72,7 @@ JAVA_HOME_TEMP="${VENDOR_DIR}/${JDK}"
 #: ${JAVA_LIBS=~autodetect~}
 
 echo "Downloading and unpacking openjdk-$JDK_VERSION into '$JAVA_HOME_TEMP'" | indent
-wget "${JDK_URL}" | tar xzf - -C "${JAVA_HOME_TEMP}"
+wget "${JDK_URL}" --no-check-certificate | tar xzf - -C "${JAVA_HOME_TEMP}"
 
 echo "JAVA_HOME_TEMP: $JAVA_HOME_TEMP" | indent
 export JAVA_HOME="/app/vendor/${JDK}"
