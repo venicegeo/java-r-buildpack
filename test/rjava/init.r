@@ -6,7 +6,7 @@
 ###########################################################
 # Update this line with the R packages to install:
 
-my_packages = c("rJava")
+my_packages = c("nlme")
 
 ###########################################################
 

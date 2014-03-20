@@ -151,10 +151,6 @@ fi
 mkdir -p /app/vendor/R/lib64/R/doc/html
 touch /app/vendor/R/lib64/R/doc/html/R.css
 
-# prep the rJava env
-echo "Calling R CMD javareconf" | indent
-$COMPILE_BUILDPACK_DIR/bin/rjava_config.sh
-
 # install dependencies from CRAN
 echo "Executing init.r script" | indent
 
@@ -176,5 +172,6 @@ echo "R $R_VERSION successfully installed" | indent
 cp -R /app/vendor/R/* $VENDOR_DIR/R
 
 
-# start rserve
-#R -e 'library(Rserve)' -e 'Rserve(args="--vanilla")'
+# setup rjava
+echo "Calling R CMD javareconf" | indent
+R CMD javareconf
