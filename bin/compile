@@ -27,7 +27,7 @@ function package_download() {
   location="$2"
 
   mkdir -p $location
-  curl $url --location -s -o - | tar xvzf - -C $location
+  curl $url --location -s -o - | tar xzf - -C $location
 }
 
 # clean up leaking environment
@@ -64,15 +64,14 @@ PLATFORM="lucid"
 ARCH="x86_64"
 JDK_URL="http://${REPOSITORY_ROOT}/openjdk/${PLATFORM}/${ARCH}/${JDK}.tar.gz"
 echo "JDK_URL: $JDK_URL" | indent
+JAVA_HOME_TEMP="${VENDOR_DIR}/${JDK}"
 #: ${JAVA_HOME=}
 #: ${JAVA_CPPFLAGS=~autodetect~}
 #: ${JAVA_LD_LIBRARY_PATH=~autodetect~}
 #: ${JAVA_LIBS=~autodetect~}
 
-echo "Downloading and unpacking openjdk-$JDK_VERSION into '$VENDOR_DIR'" | indent
-package_download "${JDK_URL}" "${VENDOR_DIR}"
-
-JAVA_HOME_TEMP="${VENDOR_DIR}/${JDK}"
+echo "Downloading and unpacking openjdk-$JDK_VERSION into 'JAVA_HOME_TEMP'" | indent
+package_download "${JDK_URL}" "${JAVA_HOME_TEMP}"
 
 if [ -d "$JAVA_HOME_TEMP" ]; then
     echo "JAVA_HOME_TEMP: $JAVA_HOME_TEMP" | indent
