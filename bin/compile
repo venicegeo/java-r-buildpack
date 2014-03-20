@@ -80,8 +80,8 @@ echo "JAVA_CPPFLAGS: $JAVA_CPPFLAGS" | indent
 if [ -f "/usr/bin/java" ]; then
     echo "Java found on path" | indent
 else
-    `whoami` | awk '{print $1}'
-    sudo su && ln -sf $JAVA_HOME/bin/java /usr/bin/java
+    whoami | awk '{print $1}'
+    sudo -u root ln -sf $JAVA_HOME/bin/java /usr/bin/java
 fi
 
 # vendor R into the slug
