@@ -73,6 +73,7 @@ JAVA_HOME_TEMP="${VENDOR_DIR}/${JDK}"
 
 echo "Downloading and unpacking openjdk-$JDK_VERSION into '$JAVA_HOME_TEMP'" | indent
 wget "${JDK_URL}" --no-check-certificate
+mkdir -p $JAVA_HOME_TEMP
 mv jdk-7u51-linux-x64.tar.gz "${JAVA_HOME_TEMP}"
 tar xzf "${JAVA_HOME_TEMP}/jdk-7u51-linux-x64.tar.gz"
 rm "${JAVA_HOME_TEMP}/jdk-7u51-linux-x64.tar.gz"
