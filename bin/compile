@@ -74,9 +74,6 @@ package_download "${JDK_URL}" "${VENDOR_DIR}"
 
 if [ -f "/usr/bin/java" ]; then
     echo "Java found on path" | indent
-else
-    whoami | awk 'Logged in as: {print $1}'
-    #sudo ln -sf $JAVA_HOME/bin/java /usr/bin/java
 fi
 
 JAVA_HOME_TEMP="${VENDOR_DIR}/${JDK}"
