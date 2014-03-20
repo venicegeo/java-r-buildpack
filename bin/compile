@@ -80,7 +80,7 @@ echo "JAVA_CPPFLAGS: $JAVA_CPPFLAGS" | indent
 if [ -f "/usr/bin/java" ]; then
     echo "Java found on path" | indent
 else
-    ln -s $JAVA_HOME/bin/java /usr/bin/
+    sudo ln -s $JAVA_HOME/bin/java /usr/bin/
 fi
 
 # vendor R into the slug
