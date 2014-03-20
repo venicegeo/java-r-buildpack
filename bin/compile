@@ -80,11 +80,12 @@ JAVA_HOME_TEMP="${VENDOR_DIR}/${JDK}"
 echo "JAVA_HOME_TEMP: $JAVA_HOME_TEMP" | indent
 export JAVA_HOME="/app/vendor/${JDK}"
 echo "JAVA_HOME: $JAVA_HOME" | indent
-mkdir -p $JAVA_HOME
 JAVA_CPPFLAGS="-I$JAVA_HOME/include -I$JAVA_HOME/include/linux"
 echo "JAVA_CPPFLAGS: $JAVA_CPPFLAGS" | indent
+
+mkdir -p $JAVA_HOME
 echo "Copying vendored ${JAVA_HOME_TEMP} files into ${JAVA_HOME}" | indent
-cp -R $JAVA_HOME_TEMP/* $JAVA_HOME
+cp -R $JAVA_HOME_TEMP $JAVA_HOME
 
 # vendor R into the slug
 echo "Vendoring R $R_VERSION" | indent
