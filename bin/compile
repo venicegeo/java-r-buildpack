@@ -27,7 +27,7 @@ function package_download() {
   location="$2"
 
   mkdir -p $location
-  curl $url --location -s -o - | tar xzf - -C $location
+  curl $url --location -s -o - | tar xvzf - -C $location
 }
 
 # clean up leaking environment
