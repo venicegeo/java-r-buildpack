@@ -87,11 +87,11 @@ mkdir -p $JAVA_HOME
 echo "Copying vendored ${JAVA_HOME_TEMP} files into ${JAVA_HOME}" | indent
 cp -R $JAVA_HOME_TEMP $JAVA_HOME
 
-if [ -f "/usr/bin/java" ]; then
-     echo "Java found on path" | indent
-else
+#if [ -f "/usr/bin/java" ]; then
+#     echo "Java found on path" | indent
+#else
     #ln -fs $JAVA_HOME/bin/java /usr/bin/java
-fi
+#fi
 
 # vendor R into the slug
 echo "Vendoring R $R_VERSION" | indent
