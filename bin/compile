@@ -151,15 +151,11 @@ fi
 mkdir -p /app/vendor/R/lib64/R/doc/html
 touch /app/vendor/R/lib64/R/doc/html/R.css
 
+# prep the rJava env
+./rjava_config.sh
+
 # install dependencies from CRAN
 echo "Executing init.r script" | indent
-
-echo "JAVA_HOME_TEMP: $JAVA_HOME_TEMP" | indent
-export JAVA_HOME="/app/vendor/${JDK}"
-echo "JAVA_HOME: $JAVA_HOME" | indent
-export JAVA_CPPFLAGS="-I$JAVA_HOME/include -I$JAVA_HOME/include/linux"
-echo "JAVA_CPPFLAGS: $JAVA_CPPFLAGS" | indent
-/app/vendor/R/bin/R CMD javareconf
 
 # set the CRAN mirror and run the init.r program
 /app/vendor/R/bin/R -s <<RPROG > indent
