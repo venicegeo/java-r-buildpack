@@ -76,7 +76,7 @@ package_download "${JDK_URL}" "${JAVA_HOME_TEMP}"
 echo "JAVA_HOME_TEMP: $JAVA_HOME_TEMP" | indent
 export JAVA_HOME="/app/vendor/${JDK}"
 echo "JAVA_HOME: $JAVA_HOME" | indent
-JAVA_CPPFLAGS="-I$JAVA_HOME/include -I$JAVA_HOME/include/linux"
+export JAVA_CPPFLAGS="-I$JAVA_HOME/include -I$JAVA_HOME/include/linux"
 echo "JAVA_CPPFLAGS: $JAVA_CPPFLAGS" | indent
 
 mkdir -p $JAVA_HOME
@@ -154,12 +154,14 @@ touch /app/vendor/R/lib64/R/doc/html/R.css
 # install dependencies from CRAN
 echo "Executing init.r script" | indent
 
-# set the CRAN mirror and run the init.r program
-/app/vendor/R/bin/R -s <<RPROG > indent
-  Sys.setenv(JAVA_HOME="$JAVA_HOME")
-  Sys.setenv(JAVA_CPPFLAGS="$JAVA_CPPFLAGS")
-RPROG
+echo "JAVA_HOME_TEMP: $JAVA_HOME_TEMP" | indent
+export JAVA_HOME="/app/vendor/${JDK}"
+echo "JAVA_HOME: $JAVA_HOME" | indent
+export JAVA_CPPFLAGS="-I$JAVA_HOME/include -I$JAVA_HOME/include/linux"
+echo "JAVA_CPPFLAGS: $JAVA_CPPFLAGS" | indent
 /app/vendor/R/bin/R CMD javareconf
+
+# set the CRAN mirror and run the init.r program
 /app/vendor/R/bin/R -s <<RPROG > indent
   Sys.setenv(BUILD_DIR="$BUILD_DIR")
   Sys.setenv(JAVA_HOME="$JAVA_HOME")
