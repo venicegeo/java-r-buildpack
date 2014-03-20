@@ -152,6 +152,7 @@ mkdir -p /app/vendor/R/lib64/R/doc/html
 touch /app/vendor/R/lib64/R/doc/html/R.css
 
 # prep the rJava env
+echo "Calling R CMD javareconf" | indent
 $COMPILE_BUILDPACK_DIR/bin/rjava_config.sh
 
 # install dependencies from CRAN
