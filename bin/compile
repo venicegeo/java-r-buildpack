@@ -73,10 +73,6 @@ JAVA_HOME_TEMP="${VENDOR_DIR}/${JDK}"
 echo "Downloading and unpacking openjdk-$JDK_VERSION into '$JAVA_HOME_TEMP'" | indent
 package_download "${JDK_URL}" "${JAVA_HOME_TEMP}"
 
-if [ -d "$JAVA_HOME_TEMP" ]; then
-    echo "JAVA_HOME_TEMP: $JAVA_HOME_TEMP" | indent
-fi
-
 echo "JAVA_HOME_TEMP: $JAVA_HOME_TEMP" | indent
 export JAVA_HOME="/app/vendor/${JDK}"
 echo "JAVA_HOME: $JAVA_HOME" | indent
@@ -161,13 +157,13 @@ echo "Executing init.r script" | indent
 # set the CRAN mirror and run the init.r program
 /app/vendor/R/bin/R -s <<RPROG > indent
   Sys.setenv(BUILD_DIR="$BUILD_DIR")
+  Sys.setenv(JAVA_HOME="$JAVA_HOME")
+  Sys.setenv(JAVA_CPPFLAGS="$JAVA_CPPFLAGS")
   setwd("$BUILD_DIR")
   r <- getOption("repos");
   r["CRAN"] <- "$CRAN_MIRROR";
   options(repos=r);
-RPROG
-/app/vendor/R/bin/R CMD javareconf
-/app/vendor/R/bin/R -s <<RPROG > indent
+  javareconf
   `cat $BUILD_DIR/init.r`
 RPROG
 
