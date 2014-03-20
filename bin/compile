@@ -155,10 +155,7 @@ touch /app/vendor/R/lib64/R/doc/html/R.css
 echo "Executing init.r script" | indent
 
 # set the CRAN mirror and run the init.r program
-/app/vendor/R/bin/R CMD javareconf -s <<RPROG > indent
-  Sys.setenv(JAVA_HOME="$JAVA_HOME")
-  Sys.setenv(JAVA_CPPFLAGS="$JAVA_CPPFLAGS")
-RPROG
+/app/vendor/R/bin/R CMD javareconf
 /app/vendor/R/bin/R -s <<RPROG > indent
   Sys.setenv(BUILD_DIR="$BUILD_DIR")
   Sys.setenv(JAVA_HOME="$JAVA_HOME")
