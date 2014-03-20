@@ -59,9 +59,7 @@ JDK_VERSION="1.7.0_51"
 PLATFORM="lucid"
 ARCH="x86_64"
 JDK_URL="http://${REPOSITORY_ROOT}/openjdk/${PLATFORM}/${ARCH}/openjdk-${JDK_VERSION}.tar.gz"
-JAVA_CPPFLAGS="-I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux"
 echo "JDK_URL: $JDK_URL" | indent
-echo "JAVA_CPPFLAGS: $JAVA_CPPFLAGS" | indent
 #: ${JAVA_HOME=}
 #: ${JAVA_CPPFLAGS=~autodetect~}
 #: ${JAVA_LD_LIBRARY_PATH=~autodetect~}
@@ -77,6 +75,8 @@ package_download "${JDK_URL}" "${VENDORED_JDK}"
 
 JAVA_HOME=${VENDORED_JDK}
 echo "JAVA_HOME: $JAVA_HOME" | indent
+JAVA_CPPFLAGS="-I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux"
+echo "JAVA_CPPFLAGS: $JAVA_CPPFLAGS" | indent
 
 # vendor R into the slug
 echo "Vendoring R $R_VERSION" | indent
