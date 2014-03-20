@@ -79,8 +79,8 @@ JAVA_CPPFLAGS="-I$JAVA_HOME/include -I$JAVA_HOME/include/linux"
 echo "JAVA_CPPFLAGS: $JAVA_CPPFLAGS" | indent
 if [ -f "/usr/bin/java" ]; then
     echo "Java found on path" | indent
-#else
-    #sudo ln -s $JAVA_HOME/bin/java /usr/bin/
+else
+    sudo ln -s $JAVA_HOME/bin/java /usr/bin/java
 fi
 
 # vendor R into the slug
