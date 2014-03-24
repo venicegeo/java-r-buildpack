@@ -140,7 +140,7 @@ echo "R_INCLUDE set to '$R_INCLUDE'" | indent
 
 # hack for libreadline shared library version
 cd /lib
-sudo ln -n ./libreadline.so.6 libreadline.so.5
+ln -n ./libreadline.so.6 libreadline.so.5
 
 # copy over 'r' environment
 mkdir -p $BUILD_DIR/.profile.d
