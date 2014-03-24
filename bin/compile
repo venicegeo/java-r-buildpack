@@ -139,8 +139,8 @@ echo "R_HOME set to '$R_HOME'" | indent
 echo "R_INCLUDE set to '$R_INCLUDE'" | indent
 
 # hack for libreadline shared library version
-# cd /lib
-# ln -n ./libreadline.so.6 libreadline.so.5
+cd /lib
+ln -n ./libreadline.so.6 libreadline.so.5
 
 # copy over 'r' environment
 mkdir -p $BUILD_DIR/.profile.d
