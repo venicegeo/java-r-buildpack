@@ -181,6 +181,6 @@ cp -R /app/vendor/R/* $VENDOR_DIR/R
 
 # setup rjava
 echo "Calling R CMD javareconf" | indent
-/app/vendor/openjdk-1.7.0_51/bin/java -version
+/app/vendor/${JDK}/bin/java -version
 echo "PATH set to '$PATH'" | indent
 R CMD javareconf
