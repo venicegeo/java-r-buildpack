@@ -83,12 +83,12 @@ package_download "${JDK_URL}" "${VENDOR_DIR}"
 echo "JAVA_HOME_TEMP: $JAVA_HOME_TEMP" | indent
 export JAVA_HOME="/app/vendor/${JDK}"
 echo "JAVA_HOME: $JAVA_HOME" | indent
-export JAVA_CPPFLAGS="-I$JAVA_HOME/include -I$JAVA_HOME/include/linux"
+export JAVA_CPPFLAGS="-I$JAVA_HOME_TEMP/include -I$JAVA_HOME_TEMP/include/linux"
 echo "JAVA_CPPFLAGS: $JAVA_CPPFLAGS" | indent
 
-mkdir -p $JAVA_HOME
-echo "Copying vendored ${JAVA_HOME_TEMP} files into ${JAVA_HOME}" | indent
-cp -R $JAVA_HOME_TEMP/* $JAVA_HOME
+#mkdir -p $JAVA_HOME
+#echo "Copying vendored ${JAVA_HOME_TEMP} files into ${JAVA_HOME}" | indent
+#cp -R $JAVA_HOME_TEMP/* $JAVA_HOME
 
 #if [ -f "/usr/bin/java" ]; then
 #     echo "Java found on path" | indent
@@ -126,7 +126,7 @@ echo "Copying lib64 files into /app/vendor/R/lib64/R/lib" | indent
 cp /app/vendor/gcc/lib64/* /app/vendor/R/lib64/R/lib
 
 # R needs to know where gfortran and glibc header files are
-export PATH="$JAVA_HOME/bin:/app/vendor/R/bin:/app/vendor/gcc/bin:$PATH"
+export PATH="$JAVA_HOME_TEMP/bin:/app/vendor/R/bin:/app/vendor/gcc/bin:$PATH"
 echo "PATH set to '$PATH'" | indent
 
 export LDFLAGS="-L/app/vendor/gcc/lib64 -L/app/vendor/gsl/lib"
@@ -164,7 +164,7 @@ echo "Executing init.r script" | indent
 # set the CRAN mirror and run the init.r program
 /app/vendor/R/bin/R -s <<RPROG > indent
   Sys.setenv(BUILD_DIR="$BUILD_DIR")
-  Sys.setenv(JAVA_HOME="$JAVA_HOME")
+  Sys.setenv(JAVA_HOME="$JAVA_HOME_TEMP")
   Sys.setenv(JAVA_CPPFLAGS="$JAVA_CPPFLAGS")
   setwd("$BUILD_DIR")
   r <- getOption("repos");
@@ -178,7 +178,6 @@ echo "R $R_VERSION successfully installed" | indent
 # need to copy binaries back so that any installed packages are included in the slug
 cp -R /app/vendor/R/* $VENDOR_DIR/R
 #cp -R /app/vendor/$JDK/* $VENDOR_DIR/$JDK
-
 
 # setup rjava
 echo "Calling R CMD javareconf" | indent
