@@ -59,7 +59,8 @@ CRAN_MIRROR="http://cran.revolutionanalytics.com"
 
 REPOSITORY_ROOT="download.pivotal.io.s3.amazonaws.com"
 JDK_VERSION="1.7.0_51"
-JDK="openjdk-${JDK_VERSION}"
+#JDK="openjdk-${JDK_VERSION}"
+JDK="jdk${JDK_VERSION}"
 PLATFORM="lucid"
 ARCH="x86_64"
 #JDK_URL="http://${REPOSITORY_ROOT}/openjdk/${PLATFORM}/${ARCH}/${JDK}.tar.gz"
@@ -72,7 +73,7 @@ JAVA_HOME_TEMP="${VENDOR_DIR}/${JDK}"
 #: ${JAVA_LIBS=~autodetect~}
 
 echo "Downloading and unpacking openjdk-$JDK_VERSION into '$JAVA_HOME_TEMP'" | indent
-package_download "${JDK_URL}" "${JAVA_HOME_TEMP}"
+package_download "${JDK_URL}" "${VENDOR_DIR}"
 #wget "${JDK_URL}" --no-check-certificate
 #mkdir -p $JAVA_HOME_TEMP
 #mv jdk-7u51-linux-x64.tar.gz "${JAVA_HOME_TEMP}"
