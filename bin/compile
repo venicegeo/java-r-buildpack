@@ -81,7 +81,8 @@ package_download "${JDK_URL}" "${VENDOR_DIR}"
 #rm "${JAVA_HOME_TEMP}/jdk-7u51-linux-x64.tar.gz"
 
 echo "JAVA_HOME_TEMP: $JAVA_HOME_TEMP" | indent
-export JAVA_HOME="/app/vendor/${JDK}"
+#export JAVA_HOME="/app/vendor/${JDK}"
+export JAVA_HOME=$JAVA_HOME_TEMP
 echo "JAVA_HOME: $JAVA_HOME" | indent
 export JAVA_CPPFLAGS="-I$JAVA_HOME_TEMP/include -I$JAVA_HOME_TEMP/include/linux"
 echo "JAVA_CPPFLAGS: $JAVA_CPPFLAGS" | indent
