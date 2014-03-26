@@ -84,7 +84,7 @@ echo "JAVA_HOME_TEMP: $JAVA_HOME_TEMP" | indent
 #export JAVA_HOME="/app/vendor/${JDK}"
 export JAVA_HOME=$JAVA_HOME_TEMP
 echo "JAVA_HOME: $JAVA_HOME" | indent
-export JAVA_CPPFLAGS="-I$JAVA_HOME_TEMP/include -I$JAVA_HOME_TEMP/include/linux"
+export JAVA_CPPFLAGS="-I$JAVA_HOME/include -I$JAVA_HOME/include/linux"
 echo "JAVA_CPPFLAGS: $JAVA_CPPFLAGS" | indent
 
 #mkdir -p $JAVA_HOME
@@ -127,7 +127,7 @@ echo "Copying lib64 files into /app/vendor/R/lib64/R/lib" | indent
 cp /app/vendor/gcc/lib64/* /app/vendor/R/lib64/R/lib
 
 # R needs to know where gfortran and glibc header files are
-export PATH="$JAVA_HOME_TEMP/bin:/app/vendor/R/bin:/app/vendor/gcc/bin:$PATH"
+export PATH="$JAVA_HOME/bin:/app/vendor/R/bin:/app/vendor/gcc/bin:$PATH"
 echo "PATH set to '$PATH'" | indent
 
 export LDFLAGS="-L/app/vendor/gcc/lib64 -L/app/vendor/gsl/lib"
@@ -165,7 +165,7 @@ echo "Executing init.r script" | indent
 # set the CRAN mirror and run the init.r program
 /app/vendor/R/bin/R -s <<RPROG > indent
   Sys.setenv(BUILD_DIR="$BUILD_DIR")
-  Sys.setenv(JAVA_HOME="$JAVA_HOME_TEMP")
+  Sys.setenv(JAVA_HOME="$JAVA_HOME")
   Sys.setenv(JAVA_CPPFLAGS="$JAVA_CPPFLAGS")
   setwd("$BUILD_DIR")
   r <- getOption("repos");
