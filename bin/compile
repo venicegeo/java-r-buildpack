@@ -72,13 +72,13 @@ VENDOR_DIR="$BUILD_DIR/vendor"
 CRAN_MIRROR="http://cran.revolutionanalytics.com"
 
 REPOSITORY_ROOT="download.pivotal.io.s3.amazonaws.com"
-JDK_VERSION="8u102-b14"
+JDK_VERSION="1.8.0_RC1"
 
-JDK="jdk${JDK_VERSION}"
-PLATFORM="lucid"
+JDK="openjdk-${JDK_VERSION}"
+PLATFORM="trusty"
 ARCH="x86_64"
 
-JDK_URL="http://hg.openjdk.java.net/jdk8u/jdk8u/archive/${JDK}.tar.gz"
+JDK_URL="http://${REPOSITORY_ROOT}/openjdk-jdk/${PLATFORM}/${ARCH}/${JDK}.tar.gz"
 echo "JDK_URL: $JDK_URL" | indent
 JAVA_HOME_TEMP="$VENDOR_DIR/$JDK"
 
