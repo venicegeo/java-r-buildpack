@@ -43,6 +43,12 @@ CACHE_DIR="$2/vendor"
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 BUILDPACK_DIR="$(dirname $(dirname $0))"
 
+# fix STACK variable if unset
+if [ -z "${STACK}" ];
+then
+  STACK="cedar-14"
+fi
+
 # config
 
 # read in R version if file exists
@@ -56,7 +62,7 @@ fi
 if [[ -f $BUILD_DIR/.r-buildpack-version ]]; then
   BUILD_PACK_VERSION=`read_var $BUILD_DIR/.r-buildpack-version`
 else
-  BUILD_PACK_VERSION="20150815-1425"
+  BUILD_PACK_VERSION="20160720-0322"
 fi
 
 S3_BUCKET="heroku-buildpack-r"
